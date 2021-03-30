@@ -2,6 +2,7 @@ const validator = require('validator')
 const mongoose = require ('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const auth = require('../middleware/auth')
 
 const adminSchema = new mongoose.Schema({
     name: {
@@ -39,7 +40,7 @@ const adminSchema = new mongoose.Schema({
 }, {timestamps: true
 })
 
-userSchema.methods.toJSON = function () {
+adminSchema.methods.toJSON = function () {
     const admin = this
     const adminObject = admin.toObject()
 
