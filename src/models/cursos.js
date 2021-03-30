@@ -23,7 +23,7 @@ const cursoSchema = new mongoose.Schema({
         ref:'Admin'
     },
     dataLimite: {
-        //ver como inserir data em vez de int
+        //Já instalei data-picker, ver como funciona e ligar ao template
         type: Int,
         required: true
     }
