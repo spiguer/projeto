@@ -1,8 +1,7 @@
 const express = require('express')
 const auth = require('../middleware/auth')
-const Curso = require('../models/cursos')
 const router = new express.Router()
-const Cursos = require('../models/cursos')
+const Curso = require('../models/cursos')
 
 router.get('/cursos', auth, async(req, res) => {
     const match = {}
@@ -35,7 +34,7 @@ router.get('cursos/:id', auth, async (req, res) => {
     const _id = req.params.id
 
     try{
-        const curso = await Cursos.findOne({ _id, owner: req.admin._id})
+        const curso = await Curso.findOne({ _id, owner: req.admin._id})
 
         if(!curso){
             return res.status(404).send()
@@ -47,12 +46,12 @@ router.get('cursos/:id', auth, async (req, res) => {
 })
 
 router.post('/cursos', auth, async (req, res) =>{
-    const curso = new Cursos({
+    const curso = new Curso({
         ...req.body,
         owner: req.admin._id
     })
     try{
-        await cursos.save()
+        await curso.save()
         res.status(201).send(curso)
     }catch(e){
         res.status(400).send(e)
@@ -70,7 +69,7 @@ router.patch('cursos/:id', auth, async(req, res)=>{
 
     }
     try{
-        const curso = await Cursos.findOne({_id: req.params.id, owner :req.admin._id})
+        const curso = await Curso.findOne({_id: req.params.id, owner :req.admin._id})
 
         if(!curso){
             return res.status(404).send()
@@ -85,7 +84,7 @@ router.patch('cursos/:id', auth, async(req, res)=>{
 
 router.delete('/cursos/:id', auth, async(req, res) =>{
     try{
-        const curso = await Cursos.findByIdAndDelete({_id: req.params.id, owner: req.user._id})
+        const curso = await Curso.findByIdAndDelete({_id: req.params.id, owner: req.user._id})
 
         if(!curso){
             return res.status(404).send()

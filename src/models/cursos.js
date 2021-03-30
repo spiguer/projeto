@@ -8,8 +8,8 @@ const cursoSchema = new mongoose.Schema({
         trim: true
     }, 
     vagas: {
-        type: Int,
-        default: 10
+        type: Number,
+        required: true
         //Colocar aqui erro para vagas < 0
     },
     escola:{
@@ -24,8 +24,7 @@ const cursoSchema = new mongoose.Schema({
     },
     dataLimite: {
         //Já instalei data-picker, ver como funciona e ligar ao template
-        type: Int,
-        required: true
+        
     }
 }, {
     timestamps: true

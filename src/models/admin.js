@@ -2,7 +2,7 @@ const validator = require('validator')
 const mongoose = require ('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const auth = require('../middleware/auth')
+const Curso = require('./cursos')
 
 const adminSchema = new mongoose.Schema({
     name: {
@@ -37,7 +37,14 @@ const adminSchema = new mongoose.Schema({
     avatar:{
         type: Buffer
     }
-}, {timestamps: true
+}, {
+    timestamps: true
+})
+
+adminSchema.virtual('cursos', {
+    ref:'Cursos',
+    localField: '_id',
+    foreignField: 'owner'
 })
 
 adminSchema.methods.toJSON = function () {
@@ -58,20 +65,20 @@ adminSchema.methods.generateAuthToken = async function () {
     admin.tokens = admin.tokens.concat({ token: token })
     await admin.save()
 
-    return admin
+    return token
 }
 
 adminSchema.statics.findByCredentials = async(email, password) => {
     const admin = await Admin.findOne({email: email})
 
     if(!email){
-        throw new Error('Enable to login!')
+        throw new Error('Unable to login!')
     }
 
     const isMatch = await bcrypt.compare(password, admin.password)
 
     if(!isMatch){
-        throw new Error('Enable to login')
+        throw new Error('Unable to login')
     }
     return admin
 }
