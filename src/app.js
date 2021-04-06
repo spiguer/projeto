@@ -5,6 +5,7 @@ require('./db/mongoose')
 const adminRouter = require('./routers/admin')
 const cursoRouter = require('./routers/cursos')
 
+
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -23,6 +24,14 @@ app.get('', (req, res) => {
         title: 'Teste'
     })
 })
+
+app.get('/admin/login', (req, res) => {
+    res.render('login', {
+        title: 'Login'
+    })
+    
+})
+
 
 
 app.use(express.json())
