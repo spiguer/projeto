@@ -13,8 +13,6 @@ const passport = require('passport')
 const hbs = require('hbs')
 
 
-//const session = require('express-session')
-
 const adminRoutes = require('./routers/admin')
 
 
@@ -37,24 +35,6 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }))
 
-
-
-
-/*const sessionConfig = {
-    secret: 'iesfproject',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        httpOnly: true,
-        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-        maxAge: 1000 * 60 * 60 * 24 * 7
-    }
-}
-app.use(session(sessionConfig))*/
-
-
-
-//app.use(flash())
 app.use(helmet())
 
 app.use(passport.initialize())

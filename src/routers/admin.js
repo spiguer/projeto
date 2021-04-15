@@ -16,7 +16,7 @@ router.post('/admins', catchAsync(async(req, res, next) => {
         req.login(registerAdmin, err =>{
             if(err) return next(err)
             //req.flash('success', 'Bem vindo')
-            res.redirect('/home')
+            res.redirect('')
         })
     }catch(e){
         //req.flash('error', e.message)
@@ -29,10 +29,11 @@ router.get('/login', (req, res) => {
 })
 
 router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req, res)=>{
+    console.log('Sucesso')
     //req.flash('success', 'Bem vindo de volta')
     //const redirectUrl = req.session.returnTo || '/home'
     //delete req.session.returnTo
-    res.redirect('/home')
+    res.redirect('registar')
 })
 
 router.get('/logout', (req, res) => {
