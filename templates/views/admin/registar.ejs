@@ -1,17 +1,31 @@
-<!DOCTYPE html>
+<% layout('../layouts/boilerplate')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Novo Registo</title>
-</head>
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Registar</h5>
+                    <form action="/admins" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="username">Username</label>
+                            <input class="form-control" type="text" id="username" name="username" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Password</label>
+                            <input class="form-control" type="password" id="password" name="password" required>
+                        </div>
+                        <button class="btn btn-success btn-block">Registar</button>
+                    </form>
 
-<body>
-    <h1>Novo Utilizador</h1>
-    <form action="/admins" method="POST">
-        <input type="text" name="username" id="username" placeholder="Nome">
-        <input type="email" name="email" id="email" placeholder="Email">
-        <input type="password" name="password" id="password">
-        <button>Registar</button>
-    </form>
-</body>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
