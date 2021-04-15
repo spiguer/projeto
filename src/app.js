@@ -11,6 +11,7 @@ require('./db/mongoose')
 const Admin = require('../src/models/admin')
 const passport = require('passport')
 const hbs = require('hbs')
+//const flash = require('connect-flash')
 
 
 const adminRoutes = require('./routers/admin')
@@ -36,6 +37,7 @@ app.use(mongoSanitize({
 }))
 
 app.use(helmet())
+
 
 app.use(passport.initialize())
 app.use(passport.session())

@@ -15,11 +15,11 @@ router.post('/admins', catchAsync(async(req, res, next) => {
         const registerAdmin = await Admin.register(admin, password)
         req.login(registerAdmin, err =>{
             if(err) return next(err)
-            //req.flash('success', 'Bem vindo')
-            res.redirect('')
+            req.flash('success', 'Bem vindo')
+            res.redirect('/')
         })
     }catch(e){
-        //req.flash('error', e.message)
+        req.flash('error', e.message)
         res.redirect('')
     }
 }))
@@ -30,15 +30,15 @@ router.get('/login', (req, res) => {
 
 router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req, res)=>{
     console.log('Sucesso')
-    //req.flash('success', 'Bem vindo de volta')
-    //const redirectUrl = req.session.returnTo || '/home'
-    //delete req.session.returnTo
-    res.redirect('registar')
+    req.flash('success', 'Bem vindo de volta')
+    const redirectUrl = req.session.returnTo || '/'
+    delete req.session.returnTo
+    res.redirect('/')
 })
 
 router.get('/logout', (req, res) => {
     req.logout()
-    res.redirect('/home')
+    res.redirect('/')
 })
 
 module.exports = router
