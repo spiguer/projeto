@@ -8,9 +8,11 @@ const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const LocalStrategy = require('passport-local')
 require('./db/mongoose')
+
 const Admin = require('../src/models/admin')
 const Alunosvt = require('../src/models/alunovt')
 const alunostsp = require('../src/models/alunotsp')
+
 const passport = require('passport')
 const hbs = require('hbs')
 const flash = require('connect-flash')
@@ -20,6 +22,8 @@ const cursoRoutes = require('./routers/cursos')
 const adminRoutes = require('./routers/admin')
 const alunosvtRoutes = require('./routers/alunosvt')
 const alunostspRoutes = require('./routers/alunostsp')
+const alunosocRoutes = require('./routers/alunosoc')
+const alunosetRoutes = require('./routers/alunoset')
 
 
 
@@ -77,6 +81,8 @@ app.use((req, res, next) => {
 app.use('/', adminRoutes)
 app.use('/', alunosvtRoutes)
 app.use('/', alunostspRoutes)
+app.use('/', alunosocRoutes)
+app.use('/', alunosetRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
