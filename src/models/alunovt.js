@@ -1,5 +1,6 @@
 //Maiores de 23 anos
 //Calcular a data e se <23 não deixar concorrer
+//Carregar cursos no ejs depois de criados pelo admin
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
