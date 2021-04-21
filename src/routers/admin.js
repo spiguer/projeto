@@ -41,4 +41,8 @@ router.get('/logout', (req, res) => {
     res.redirect('/')
 })
 
+router.get('/escolha', (req, res) => {
+    res.render('aluno/escolha')
+})
+
 module.exports = router
