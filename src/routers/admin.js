@@ -33,13 +33,15 @@ router.post('/login', passport.authenticate('local', {failureFlash:true, failure
     req.flash('success', 'Bem vindo de volta')
     const redirectUrl = req.session.returnTo || '/'
     delete req.session.returnTo
-    res.redirect('/')
+    res.redirect('/tabelavp')
 })
 
 router.get('/logout', (req, res) => {
     req.logout()
     res.redirect('/')
 })
+
+
 
 router.get('/escolha', (req, res) => {
     res.render('aluno/escolha')

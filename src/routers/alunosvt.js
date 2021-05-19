@@ -8,6 +8,13 @@ router.get('/alunosvt', (req, res) => {
     res.render('aluno/alunovt')
 })
 
+router.get('/tabelavp', (req, res) => {
+    Alunosvt.find({}, function(err, alunosvt){
+        res.render('admin/tabelavp', {alunosvt: alunosvt})
+    })
+})
+
+
 router.post('/alunosvt', catchAsync(async(req, res, next) => {
     try{
         const { name, email, contacto, dateOfBirth, nota, curso } = req.body

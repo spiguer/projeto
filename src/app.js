@@ -8,6 +8,9 @@ const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const LocalStrategy = require('passport-local')
 require('./db/mongoose')
+const bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({extended: true}))
 
 const Admin = require('../src/models/admin')
 
@@ -22,6 +25,8 @@ const alunosvtRoutes = require('./routers/alunosvt')
 const alunostspRoutes = require('./routers/alunostsp')
 const alunosocRoutes = require('./routers/alunosoc')
 const alunosetRoutes = require('./routers/alunoset')
+const { db } = require('../src/models/admin')
+const { Collection } = require('mongoose')
 
 
 

@@ -6,7 +6,25 @@ const catchAsync = require('../utils/catchAsync')
 const Alunoset = require('../models/alunoet')
 
 router.get('/alunoet', (req, res) => {
-    res.render('aluno/alunoet')
+    Alunoset.find({}, function(err, alunosets){
+        res.render('aluno/alunoet', {alunosets: alunosets})
+        
+    })
+    //res.render('aluno/alunoet', {name: this.name})
+    /*Alunoset.find({}, function(err, alunosets){
+        if(err) {
+            res.send(err)
+        }else{
+            res.send(alunosets)
+        }
+    }) */
+
+})
+
+router.get('/tabelaaet', (req, res) => {
+    Alunoset.find({}, function(err, alunosets){
+        res.render('admin/tabelaaet', {alunosets: alunosets})
+    })
 })
 
 router.post('/alunoset', catchAsync(async(req, res, next) => {
@@ -21,5 +39,10 @@ router.post('/alunoset', catchAsync(async(req, res, next) => {
         res.redirect('')
     }
 }))
+
+
+
+
+
 
 module.exports = router

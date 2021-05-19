@@ -5,8 +5,15 @@ const router = express.Router()
 const catchAsync = require('../utils/catchAsync')
 const Alunostsp = require('../models/alunotsp')
 
+
 router.get('/alunotsp', (req, res) => {
     res.render('aluno/alunotsp')
+})
+
+router.get('/tabelatsp', (req, res) => {
+    Alunostsp.find({}, function(err, alunostsp){
+        res.render('admin/tabelatsp', {alunostsp: alunostsp})
+    })
 })
 
 router.post('/alunostsp', catchAsync(async(req, res, next) => {

@@ -9,6 +9,12 @@ router.get('/alunooc', (req, res) => {
     res.render('aluno/alunooc')
 })
 
+router.get('/tabelaoc', (req, res) => {
+    Alunosoc.find({}, function(err, alunosoc){
+        res.render('admin/tabelaoc', {alunosoc: alunosoc})
+    })
+})
+
 router.post('/alunosoc', catchAsync(async(req, res, next) => {
     try{
         const { name, email, contacto, dateOfBirth, cursoSuperior, nota, curso } = req.body
