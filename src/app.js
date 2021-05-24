@@ -91,6 +91,10 @@ app.get('/', (req, res) => {
     res.render('home')
 })
 
+app.get('/admin', (req, res) => {
+    res.render('admin/admin')
+})
+
 /*app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
 })*/
