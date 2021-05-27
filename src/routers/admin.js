@@ -16,7 +16,7 @@ router.post('/admins', catchAsync(async(req, res, next) => {
         req.login(registerAdmin, err =>{
             if(err) return next(err)
             req.flash('success', 'Bem vindo')
-            res.redirect('/')
+            res.redirect('/admin')
         })
     }catch(e){
         req.flash('error', e.message)
