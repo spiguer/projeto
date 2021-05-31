@@ -3,6 +3,7 @@ const router = express.Router()
 const passport = require('passport')
 const catchAsync = require('../utils/catchAsync')
 const Admin = require('../models/admin')
+const { sendWelcomeEmail, sendCancelationEmail} = require('../emails/account')
 
 router.get('/registar', (req, res)=>{
     res.render('admin/registar')
@@ -13,6 +14,7 @@ router.post('/admins', catchAsync(async(req, res, next) => {
         const { email, username, password} = req.body
         const admin = new Admin({ email, username})
         const registerAdmin = await Admin.register(admin, password)
+        sendWelcomeEmail(admin.email, admin.username)
         req.login(registerAdmin, err =>{
             if(err) return next(err)
             req.flash('success', 'Bem vindo')

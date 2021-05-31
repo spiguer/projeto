@@ -1,0 +1,59 @@
+<% layout('../layouts/boilerplate')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                    alt="" class="card-img-top" />
+                <div class="card-body">
+                    <h5 class="card-title">Inscrição</h5>
+                    <form action="/concorrer" method="POST" class="validated-form" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Nome</label>
+                            <input class="form-control" type="text" id="name" name="name" required autofocus>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="contacto">Contacto</label>
+                            <input class="form-control" type="number" id="contacto" name="contacto" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="dateOfBirth">dateOfBirth</label>
+                            <input class="form-control" type="date" id="dateOfBirth" name="dateOfBirth" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                        <select name="tipoConc" id="tipoConc">
+                            <option value="mais23">Maiores de 23 anos</option>
+                            <option value="det">Diploma de especialização tecnológica</option>
+                            <option value="dtsp">Diploma de técnico superior profissional</option>
+                            <option value="tocs">Titulares de outros cursos superiores</option>
+                        </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="nota">Nota</label>
+                            <input class="form-control" type="number" id="nota" name="nota" required>
+                        </div>
+                        
+                        
+                    <div class="mb-3">
+                        <select name="curso">
+                            <% curso.forEach(function(curso){ %>
+                                <option value="<%= curso.name %>"><%= curso.name %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    
+                   
+                        <button class="btn btn-success btn-block">Inscrição</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

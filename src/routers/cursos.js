@@ -8,6 +8,13 @@ router.get('/curso', (req, res) => {
     res.render('admin/curso')
 })
 
+router.get('/concorrer', (req, res) => {
+    Curso.find({}, function(err, curso){
+        res.render('aluno/concorrer', {curso: curso})
+    })
+})
+
+
 router.post('/cursos', catchAsync(async(req, res, next) => {
     try{
         const {name, vagaset, vagasoc, vagastsp, vagasvt} = req.body

@@ -1,0 +1,38 @@
+const sgMail = require('@sendgrid/mail')
+
+const sendgridAPIKey = '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'
+
+sgMail.setApiKey(sendgridAPIKey)
+
+const sendWelcomeEmail = (email, username) => {
+    sgMail.send({
+        to: email,
+        from: 'nunoecb@gmail.com',
+        subject: 'Registo',
+        text: `Bem vindo á aplicação, ${username}. O seu registo foi efetuado com sucesso`
+    })
+}
+
+const sendCancelationEmail = (email, username) => {
+    sgMail.send({
+        to: email,
+        from: 'nunoecb@gmail.com',
+        subject: 'Cancelation Email',
+        text: `Confirmação, ${username}.`
+    })
+}
+
+const sendInscricaoEmail = (email, name, curso, nota) => {
+    sgMail.send({
+        to: email,
+        from: 'nunoecb@gmail.com',
+        subject: 'Inscrição Confirmada',
+        text: `O aluno, ${name}, fez a sua inscrição no curso de ${curso}, com a seguinte nota ${nota}.`
+    })
+}
+
+module.exports = {
+    sendWelcomeEmail: sendWelcomeEmail,
+    sendCancelationEmail: sendCancelationEmail,
+    sendInscricaoEmail: sendInscricaoEmail
+}

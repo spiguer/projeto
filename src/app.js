@@ -26,7 +26,9 @@ const alunostspRoutes = require('./routers/alunostsp')
 const alunosocRoutes = require('./routers/alunosoc')
 const alunosetRoutes = require('./routers/alunoset')
 const cursosRoutes = require('./routers/cursos')
+const concorrerRoutes = require('./routers/concorrers')
 const { db } = require('../src/models/admin')
+
 const { Collection } = require('mongoose')
 
 
@@ -88,6 +90,8 @@ app.use('/', alunostspRoutes)
 app.use('/', alunosocRoutes)
 app.use('/', alunosetRoutes)
 app.use('/', cursosRoutes)
+
+app.use('/', concorrerRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
