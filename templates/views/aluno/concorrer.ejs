@@ -22,16 +22,17 @@
                             <input class="form-control" type="number" id="contacto" name="contacto" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="dateOfBirth">dateOfBirth</label>
+                            <label class="form-label" for="dateOfBirth">Data de Nascimento</label>
                             <input class="form-control" type="date" id="dateOfBirth" name="dateOfBirth" required>
                         </div>
-                        
+                        <div class="mb-3"><label>Tipo de Concurso</label></div>
                         <div class="mb-3">
                         <select name="tipoConc" id="tipoConc">
                             <option value="mais23">Maiores de 23 anos</option>
                             <option value="det">Diploma de especialização tecnológica</option>
                             <option value="dtsp">Diploma de técnico superior profissional</option>
                             <option value="tocs">Titulares de outros cursos superiores</option>
+                            
                         </select>
                         </div>
                         <div class="mb-3">
@@ -39,7 +40,7 @@
                             <input class="form-control" type="number" id="nota" name="nota" required>
                         </div>
                         
-                        
+                    <div class="mb-3"><label>Curso</label></div>    
                     <div class="mb-3">
                         <select name="curso">
                             <% curso.forEach(function(curso){ %>

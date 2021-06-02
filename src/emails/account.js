@@ -22,12 +22,12 @@ const sendCancelationEmail = (email, username) => {
     })
 }
 
-const sendInscricaoEmail = (email, name, curso, nota) => {
+const sendInscricaoEmail = (email, name) => {
     sgMail.send({
         to: email,
         from: 'nunoecb@gmail.com',
         subject: 'Inscrição Confirmada',
-        text: `O aluno, ${name}, fez a sua inscrição no curso de ${curso}, com a seguinte nota ${nota}.`
+        text: `O aluno, ${name}, fez a sua inscrição com sucesso.`
     })
 }
 

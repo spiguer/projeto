@@ -1,0 +1,54 @@
+<% layout('../layouts/boileradmin')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-8 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                    alt="" class="card-img-top" />
+                    
+                <div class="card-body">
+                    <h3 class="card-title">Tabela de Alunos</h3>
+                    <br><br>
+                    <form action="/concorrers" method="GET" class="validated-form" novalidate></form>
+                   
+                        <div>
+                            <table class="table">
+
+                                <div class="mb-3"><label>Curso</label></div>    
+                    <div class="mb-3">
+                        <select name="curso">
+                            <% curso.forEach(function(curso){ %>
+                                <option value="<%= curso.name %>"><%= curso.name %> </option>
+                            <% }) %>
+                        </select>
+                    </div>
+                    <br><br>
+                    
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Contacto</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Nota</th>
+                                    <th>Curso</th>
+                                    <th>Tipo de Concurso</th>
+                                </tr>
+                                <% for(var i=0; i<concorrers.length; i++) {%>
+                                    <tr>
+                                        <td><%= concorrers[i].name %></td>
+                                        <td><%= concorrers[i].email %></td>
+                                        <td><%= concorrers[i].contacto %></td>
+                                        <td><%= concorrers[i].dateOfBirth %></td>
+                                        <td><%= concorrers[i].nota %></td>
+                                        <td><%= concorrers[i].curso %></td>
+                                        <td><%= concorrers[i].tipoConc %></td>
+                                    </tr>
+                                <% } %>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

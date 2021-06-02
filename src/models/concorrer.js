@@ -14,7 +14,9 @@ const concorrerSchema = new Schema({
     contacto: {
         type: Number,
         trim: true, 
-        required: true
+        required: true,
+        min: 910000000,
+        max:969999999
     },
     dateOfBirth: {
         type: Date,
@@ -24,7 +26,9 @@ const concorrerSchema = new Schema({
     nota: {
         type: Number,
         required: true,
-        trim: true
+        trim: true,
+        min: 10,
+        max: 20
     },
     curso: {
         type: String,

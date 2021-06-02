@@ -4,6 +4,7 @@ const catchAsync = require('../utils/catchAsync')
 const Curso = require('../models/curso')
 
 
+
 router.get('/curso', (req, res) => {
     res.render('admin/curso')
 })
