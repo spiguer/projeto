@@ -5,7 +5,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const sendWelcomeEmail = (email, username) => {
     sgMail.send({
         to: email,
-        from: 'nunoecb@gmail.com',
+        from: 'nunoeccb@gmail.com',
         subject: 'Registo',
         text: `Bem vindo á aplicação, ${username}. O seu registo foi efetuado com sucesso`
     })
@@ -14,7 +14,7 @@ const sendWelcomeEmail = (email, username) => {
 const sendCancelationEmail = (email, username) => {
     sgMail.send({
         to: email,
-        from: 'nunoecb@gmail.com',
+        from: 'nunoeccb@gmail.com',
         subject: 'Cancelation Email',
         text: `Confirmação, ${username}.`
     })
@@ -23,7 +23,7 @@ const sendCancelationEmail = (email, username) => {
 const sendInscricaoEmail = (email, name) => {
     sgMail.send({
         to: email,
-        from: 'nunoecb@gmail.com',
+        from: 'nunoeccb@gmail.com',
         subject: 'Inscrição Confirmada',
         text: `O aluno, ${name}, fez a sua inscrição com sucesso.`
     })

@@ -4,14 +4,54 @@ const catchAsync = require('../utils/catchAsync')
 const Concorrer = require('../models/concorrer')
 const {sendInscricaoEmail} = require('../emails/account')
 const Curso = require('../models/curso')
+const bodyParser = require('body-parser')
+
 
 router.get('/concorrer', (req, res) => {
     res.render('aluno/concorrer')
 })
 
 
+
+/*router.get('/tabela', (req, res) =>{
+    Curso.find({}, function(err, curso){
+       if(err){
+           console.log(err)
+       }else{
+           Concorrer.find({}, function(err, concorrers){
+               if(err){
+                   console.log(err)
+               }else{
+                   res.render('admin/tabela', {curso, concorrers})
+
+               }
+           })
+       }
+   })
+})*/
+
 router.get('/tabela', (req, res) =>{
     Curso.find({}, function(err, curso){
+       if(err){
+           console.log(err)
+       }else{
+           
+           Concorrer.find({curso: 'LCC'}, function(err, concorrers){
+               if(err){
+                   console.log(err)
+               }else{
+                   res.render('admin/tabela', {curso, concorrers})
+
+               }
+           })
+       }
+   })
+})
+
+
+
+/*router.get('/tabela', (req, res) =>{
+     Curso.find({}, function(err, curso){
         if(err){
             console.log(err)
         }else{
@@ -19,12 +59,15 @@ router.get('/tabela', (req, res) =>{
                 if(err){
                     console.log(err)
                 }else{
-                    res.render('admin/tabela', {curso: curso, concorrers: concorrers})
+                    res.render('admin/tabela', {curso, concorrers})
+
                 }
             })
         }
     })
-})
+})*/
+
+
 
 
 router.post('/concorrer', catchAsync(async(req, res) => {
@@ -39,6 +82,7 @@ router.post('/concorrer', catchAsync(async(req, res) => {
         req.flash('error', e.message)
         res.redirect('/concorrer')
     }
+    
 }))
 
 
