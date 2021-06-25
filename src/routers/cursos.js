@@ -15,6 +15,12 @@ router.get('/concorrer', (req, res) => {
     })
 })
 
+router.get('/cursotable', (req, res) => {
+    Curso.find().then(curso => {
+        res.render('admin/cursotable', {curso: curso})
+    })
+})
+
 
 router.post('/cursos', catchAsync(async(req, res, next) => {
     try{
@@ -28,5 +34,15 @@ router.post('/cursos', catchAsync(async(req, res, next) => {
     }
     
 }))
+
+
+router.post('/cursos/delete', async(req, res) => {
+    const _id = req.body.id
+
+    Curso.findByIdAndDelete({_id}, function( err, curso){
+        req.flash('success', 'Curso eliminado com sucesso')
+        res.redirect('../cursotable')
+    })
+})
 
 module.exports = router

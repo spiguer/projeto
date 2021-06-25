@@ -9,6 +9,8 @@ router.get('/registar', (req, res)=>{
     res.render('admin/registar')
 })
 
+
+
 router.post('/admins', catchAsync(async(req, res, next) => {
     try{
         const { email, username, password} = req.body
@@ -28,6 +30,20 @@ router.post('/admins', catchAsync(async(req, res, next) => {
 
 router.get('/login', (req, res) => {
     res.render('admin/login')
+})
+
+router.get('/tabAdm', (req, res)=>{
+    Admin.find().then(admin => {
+        res.render('admin/tabAdm', {admin: admin})
+    })
+})
+
+router.post('/admins/delete', async(req,res) => {
+    const _id = req.body.id
+    Admin.findByIdAndDelete({_id}, function(err, admin){
+        req.flash('success', 'Admin eliminado com sucesso')
+        res.redirect('../tabAdm')
+    })
 })
 
 router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req, res)=>{

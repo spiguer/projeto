@@ -1,0 +1,58 @@
+<% layout('../layouts/boileradmin')%>
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 col-xl-8 offset-xl-4">
+            <div class="card shadow">
+                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                    alt="" class="card-img-top" />
+                    
+                <div class="card-body">
+                    <h3 class="card-title">Tabela de Cursos</h3>
+                    <br><br>
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Vaga 1</th>
+                                <th>Vaga 2</th>
+                                <th>vaga 3</th>
+                                <th>vaga 4</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% curso.forEach(curso => { %>
+                                <tr>
+                                    <th><%= curso.id %></th>
+                                    <th><%= curso.name %></th>
+                                    <th><%= curso.vagaset %></th>
+                                    <th><%= curso.vagasoc %></th>
+                                    <th><%= curso.vagastsp %></th>
+                                    <th><%= curso.vagasvt %></th>
+                                    <th>
+                                    <form method="POST" action="/cursos/delete">
+                                        <input type="hidden" name="id" value="<%= curso._id %>">
+                                        <button class="btn btn-danger">Apagar</button>
+                                    </form>
+                                    </th>
+                                </tr>
+                            <% }) %>
+                        </tbody>
+                    </table>
+
+
+
+            
+                        
+                     
+
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

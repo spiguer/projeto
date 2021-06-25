@@ -10,22 +10,51 @@
                 <div class="card-body">
                     <h3 class="card-title">Tabela de Alunos</h3>
                     <br><br>
-                    <form action="/concorrers" method="GET" class="validated-form" novalidate></form>
-                   
-                        <div>
-                            <table class="table">
+                        
 
-                                <div class="mb-3"><label>Curso</label></div>    
-                    <div class="mb-3">
+                    <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Contacto</th>
+                                    <th>Data de Nascimento</th>
+                                    <th>Nota</th>
+                                    <th>Curso</th>
+                                    <th>Tipo Concurso</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <% concorrers.forEach(concorrers => { %>
+                                    <tr>
+                                    <th><%= concorrers.id %></th>
+                                    <th><%= concorrers.name %></th>
+                                    <th><%= concorrers.email %></th>
+                                    <th><%= concorrers.contacto %></th>
+                                    <th><%= concorrers.dateOfBirth %></th>
+                                    <th><%= concorrers.nota %></th>
+                                    <th><%= concorrers.curso %></th>
+                                    <th><%= concorrers.tipoConc %></th>
+                                    <th>
+                                        <form method="POST" action="/concorrers/delete">
+                                            <input type="hidden" name="id" value="<%= concorrers._id %>">
+                                            <button class="btn btn-danger">Apagar</button> 
+                                        </form>
+                                    </th>
+                                </tr>
+                                <% }) %>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                        
 
-                    
-                        <select name="teste">
-                            <% curso.forEach(function(curso){ %>
-                                <option value="<%= curso.name %>"><%= curso.name %> </option>
-                            <% }) %>
-                        </select>
-                        <br><br>
-                        <button class="btn btn-success btn-block">Ver Curso</button> 
+
+
             
                         
                         <br><br>
@@ -42,40 +71,11 @@
                     </div>
                    
                     <br>
-
-               
-                    <div>
-                        <section> <% curso.forEach(function(curso){ %>
-                            <option value="<%= curso.name %>"><%= curso.name %></option>
-                        <% }) %>
-                       
-                        </section>
-                    </div>
                     
                     
                     <br><br>
+
                     
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>Email</th>
-                                    <th>Contacto</th>
-                                    <th>Data de Nascimento</th>
-                                    <th>Nota</th>
-                                    <th>Curso</th>
-                                    <th>Tipo de Concurso</th>
-                                </tr>
-                                <% for(var i=0; i<concorrers.length; i++) {%>
-                                    <tr>
-                                        <td><%= concorrers[i].name %></td>
-                                        <td><%= concorrers[i].email %></td>
-                                        <td><%= concorrers[i].contacto %></td>
-                                        <td><%= concorrers[i].dateOfBirth %></td>
-                                        <td><%= concorrers[i].nota %></td>
-                                        <td><%= concorrers[i].curso %></td>
-                                        <td><%= concorrers[i].tipoConc %></td>
-                                    </tr>
-                                <% } %>
-                            </table>
                         </div>
                 </div>
             </div>
