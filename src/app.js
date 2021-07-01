@@ -2,35 +2,23 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const ejsMate = require('ejs-mate')
-const ExpressError = require('./utils/ExpressError')
 const methodOverride = require('method-override')
 const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const LocalStrategy = require('passport-local')
 require('./db/mongoose')
 const bodyParser = require('body-parser')
-
 app.use(bodyParser.urlencoded({extended: true}))
-
 const Admin = require('../src/models/admin')
-
-
 const passport = require('passport')
 const hbs = require('hbs')
 const flash = require('connect-flash')
 const session = require('express-session')
 
 const adminRoutes = require('./routers/admin')
-const alunosvtRoutes = require('./routers/alunosvt')
-const alunostspRoutes = require('./routers/alunostsp')
-const alunosocRoutes = require('./routers/alunosoc')
-const alunosetRoutes = require('./routers/alunoset')
 const cursosRoutes = require('./routers/cursos')
 const concorrerRoutes = require('./routers/concorrers')
-const { db } = require('../src/models/admin')
-
-const { Collection } = require('mongoose')
-
+const concursoRoutes = require('./routers/concursos')
 
 
 const port = process.env.PORT || 3000
@@ -85,12 +73,8 @@ app.use((req, res, next) => {
 
 //app.use(express.json())
 app.use('/', adminRoutes)
-app.use('/', alunosvtRoutes)
-app.use('/', alunostspRoutes)
-app.use('/', alunosocRoutes)
-app.use('/', alunosetRoutes)
 app.use('/', cursosRoutes)
-
+app.use('/', concursoRoutes)
 app.use('/', concorrerRoutes)
 
 app.get('/', (req, res) => {

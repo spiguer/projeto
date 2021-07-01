@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 const catchAsync = require('../utils/catchAsync')
 const Curso = require('../models/curso')
+const Concorrer = require('../models/concorrer')
+const Concurso = require('../models/concurso')
 
 
 
@@ -10,17 +12,29 @@ router.get('/curso', (req, res) => {
 })
 
 router.get('/concorrer', (req, res) => {
-    Curso.find({}, function(err, curso){
-        res.render('aluno/concorrer', {curso: curso})
+    Concurso.find({}, function(err, concurso){
+        Curso.find({}, function(err, curso){
+            res.render('aluno/concorrer', {curso: curso, concurso})
+        })
     })
+
+    
 })
 
 router.get('/cursotable', (req, res) => {
-    Curso.find().then(curso => {
-        res.render('admin/cursotable', {curso: curso})
+    Concorrer.find().then(concorrers => {
+        Curso.find().then(curso => {
+            res.render('admin/cursotable', {curso, concorrers})
+        })
     })
+    
 })
 
+router.get('/showalunos', (req, res) => {
+    Concorrer.find({curso: req.query.curso}).then(concorrers => {
+        res.render('admin/showalunos', {concorrers})
+    })
+})
 
 router.post('/cursos', catchAsync(async(req, res, next) => {
     try{

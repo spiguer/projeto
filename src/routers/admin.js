@@ -10,7 +10,6 @@ router.get('/registar', (req, res)=>{
 })
 
 
-
 router.post('/admins', catchAsync(async(req, res, next) => {
     try{
         const { email, username, password} = req.body
@@ -46,12 +45,17 @@ router.post('/admins/delete', async(req,res) => {
     })
 })
 
-router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req, res)=>{
+/*router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req, res)=>{
     console.log('Sucesso')
     req.flash('success', 'Bem vindo de volta')
     const redirectUrl = req.session.returnTo || '/'
     delete req.session.returnTo
-    res.redirect('/tabelavp')
+    res.redirect('/tabela')
+})*/
+
+router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req,res) => {
+    req.flash('success', 'Bem vindo de volta!')
+    res.redirect('../tabAdm')
 })
 
 router.get('/logout', (req, res) => {

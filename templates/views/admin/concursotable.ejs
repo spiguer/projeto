@@ -5,27 +5,25 @@
         <div class="col-md-6 offset-md-3 col-xl-8 offset-xl-4">
             <div class="card shadow">
                 <div class="card-body">
-                    <h3 class="card-title">Administradores</h3>
+                    <h3 class="card-title">Tabela de Cursos</h3>
                     <br><br>
 
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>Username</th>
-                                <th>Email</th>
+                                <th>Nome</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% admin.forEach(admin => { %>
+                            <% concurso.forEach(concurso => { %>
                                 <tr>
-                                    <th><%= admin.id %></th>
-                                    <th><%= admin.username %></th>
-                                    <th><%= admin.email %></th>
+                                    <th><%= concurso.id %></th>
+                                    <th><%= concurso.name %></th>
                                     <th>
-                                    <form method="POST" action="/admins/delete">
-                                        <input type="hidden" name="id" value="<%= admin._id %>">
+                                    <form method="POST" action="/concursos/delete">
+                                        <input type="hidden" name="id" value="<%= concurso._id %>">
                                         <button class="btn btn-danger">Apagar</button>
                                     </form>
                                     </th>

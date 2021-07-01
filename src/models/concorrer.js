@@ -27,14 +27,14 @@ const concorrerSchema = new Schema({
         type: Number,
         required: true,
         trim: true,
-        min: 10,
+        min: 9.5,
         max: 20
     },
     curso: {
         type: String,
         required: true
     },
-    tipoConc: {
+    concurso: {
         type: String,
         required: true
     }
