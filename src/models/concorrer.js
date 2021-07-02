@@ -37,6 +37,10 @@ const concorrerSchema = new Schema({
     concurso: {
         type: String,
         required: true
+    },
+    file: {
+        type: String
+
     }
 })
 

@@ -6,7 +6,8 @@
             <div class="card shadow">
                 <div class="card-body">
                     <h5 class="card-title">Inscrição</h5>
-                    <form action="/concorrer" method="POST" class="validated-form" novalidate>
+                    <form action="/concorrer" method="POST" enctype="multipart/form-data">
+                        
                         <div class="mb-3">
                             <label class="form-label" for="name">Nome</label>
                             <input class="form-control" type="text" id="name" name="name" required autofocus>
@@ -46,6 +47,13 @@
                             <% }) %>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="file">File</label>
+                        <br>
+                        <input type="file" name="file">
+                    </div>
+
                     
                    
                         <button class="btn btn-success btn-block">Inscrição</button>

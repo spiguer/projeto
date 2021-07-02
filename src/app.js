@@ -7,8 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const LocalStrategy = require('passport-local')
 require('./db/mongoose')
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({extended: true}))
+
 const Admin = require('../src/models/admin')
 const passport = require('passport')
 const hbs = require('hbs')
@@ -20,6 +19,7 @@ const cursosRoutes = require('./routers/cursos')
 const concorrerRoutes = require('./routers/concorrers')
 const concursoRoutes = require('./routers/concursos')
 
+const upload = require('express-fileupload')
 
 const port = process.env.PORT || 3000
 
@@ -31,6 +31,15 @@ app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', viewsPath)
 hbs.registerPartials(partialsPath)
+
+
+//Upload Middlware
+
+app.use(upload())
+
+
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.use(express.urlencoded({extended: true}))
 app.use(methodOverride('_method'))
@@ -69,6 +78,9 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error')
     next();
 })
+
+
+
 
 
 //app.use(express.json())

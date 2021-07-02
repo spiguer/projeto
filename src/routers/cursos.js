@@ -21,20 +21,30 @@ router.get('/concorrer', (req, res) => {
     
 })
 
+
+
 router.get('/cursotable', (req, res) => {
-    Concorrer.find().then(concorrers => {
-        Curso.find().then(curso => {
-            res.render('admin/cursotable', {curso, concorrers})
+    Concurso.find().then(concurso => {
+        Concorrer.find().then(concorrers => {
+            Curso.find().then(curso => {
+                res.render('admin/cursotable', {curso, concorrers, concurso})
+            })
         })
     })
     
+    
 })
 
-router.get('/showalunos', (req, res) => {
-    Concorrer.find({curso: req.query.curso}).then(concorrers => {
-        res.render('admin/showalunos', {concorrers})
+
+router.get('/showalunos', async (req, res) => {
+    Concorrer.find({curso: req.query.curso, concurso: req.query.concurso}).then(concorrers => {
+    res.render('admin/showalunos', {concorrers})     
     })
+        
 })
+
+
+
 
 router.post('/cursos', catchAsync(async(req, res, next) => {
     try{
