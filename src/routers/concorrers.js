@@ -42,7 +42,7 @@ router.post('/concorrer', catchAsync(async(req, res) => {
         let file = req.files.file;
         filename = Date.now() + '-' + file.name;
 
-        let dirUploads = './public/uploads/'
+        let dirUploads = './public/images/'
 
         file.mv(dirUploads + filename, (err) => {
             if(err) throw err;
