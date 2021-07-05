@@ -8,10 +8,11 @@
                     <h3 class="card-title">Tabela de Alunos</h3>
                     <br><br>
                     <div class="card-body">
+                        
+                    <div id="relatorio">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Nome</th>
                                     <th>Email</th>
                                     <th>Contacto</th>
@@ -20,13 +21,14 @@
                                     <th>Curso</th>
                                     <th>Tipo Concurso</th>
                                     <th>Cartão de Cidadão</th>
+                                    <th>Certificado de Habilitações</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>    
                                 <% concorrers.forEach(concorrers => { %>
                                     <tr>
-                                    <th><%= concorrers.id %></th>
+                                    <th hidden><%= concorrers.id %></th>
                                     <th><%= concorrers.name %></th>
                                     <th><%= concorrers.email %></th>
                                     <th><%= concorrers.contacto %></th>
@@ -35,6 +37,7 @@
                                     <th><%= concorrers.curso %></th>
                                     <th><%= concorrers.concurso %></th>
                                     <td class="img-responsive"><img height="100px" src="/images/<%= concorrers.file %>"></td>
+                                    <td class="img-responsive"><img height="100px" src="/images/<%= concorrers.certificado %>"></td>
                                     <th>
                                         <form method="POST" action="/concorrers/delete">
                                             <input type="hidden" name="id" value="<%= concorrers._id %>">
@@ -46,28 +49,37 @@
                             </tbody>
                         </table>
                     </div>
-                    
-                        
+                </div>
 
-
-
+                </div>
+                <ul>
+                    <% curso.forEach(curso => {%>
+                        <li><a href="/showalunos?curso=<%= curso.name %>"><option><%= curso.name %></option></a></li>
+                    <% }) %>
+                </ul>
+            </div>
             
+            <div class="mb-3">
+                
+        
+                <button type="submit">
+                    <select name="curso" id="curso">
+                        <% curso.forEach(function(curso){ %>
+                            <option value="<%= curso.name %>"><%= curso.name %> </option>
+                        <% }) %>
+                    </select>
+                    <select name="concurso">
+                        <% concurso.forEach(function(concurso){ %>
+                            <option id="concurso" value="<%= concurso.name %>"><%= concurso.name %></option>
+                        <% }) %>
                         
-                        <br><br>
-                        <div class="mb-3"><label>Tipo de Concurso</label></div>  
-                        <div class="mb-3">
-                            
-                            <select name="tipoConc" id="tipoConc">
-                                <option value="mais23">Maiores de 23 anos</option>
-                                <option value="det">Diploma de especialização tecnológica</option>
-                                <option value="dtsp">Diploma de técnico superior profissional</option>
-                                <option value="tocs">Titulares de outros cursos superiores</option>
-                            </select>
-                        </div>
-                    </div>
-                   
-                    <br>
-                    <br><br>
+                    </select>
+                    <a href="/showalunos?curso=<%= curso.name %>&concurso=<%= concurso.name %>">Procurar</a></button>
+           
+            </div>
+
+            <a href="/pdf">Gerar PDF</a>
+                        
 
                     
                         </div>
@@ -76,3 +88,4 @@
         </div>
     </div>
 </div>
+

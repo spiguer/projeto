@@ -5,26 +5,10 @@ const cursoSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    }, 
-    vagaset: {
-        type: Number,
-        required: true,
-        default: 0
     },
-    vagasoc: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    vagastsp: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    vagasvt: {
-        type: Number,
-        required: true,
-        default: 0
+    escola: {
+        type: String,
+        required: true
     }
 })
 

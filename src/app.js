@@ -7,6 +7,7 @@ const mongoSanitize = require('express-mongo-sanitize')
 const helmet = require('helmet')
 const LocalStrategy = require('passport-local')
 require('./db/mongoose')
+const ExpressError = require('./utils/ExpressError')
 
 const Admin = require('../src/models/admin')
 const passport = require('passport')
@@ -34,7 +35,6 @@ hbs.registerPartials(partialsPath)
 
 
 //Upload Middlware
-
 app.use(upload())
 
 
@@ -64,13 +64,14 @@ app.use(session(sessionConfig))
 app.use(flash())
 
 
-
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStrategy(Admin.authenticate()))
 
 passport.serializeUser(Admin.serializeUser())
 passport.deserializeUser(Admin.deserializeUser())
+
+
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.admin
@@ -98,7 +99,7 @@ app.get('/admin', (req, res) => {
 })
 
 /*app.all('*', (req, res, next) => {
-    next(new ExpressError('Page Not Found', 404))
+    next(new ExpressError('Página não encontrada', 404))
 })*/
 
 

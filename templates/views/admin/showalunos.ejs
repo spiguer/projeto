@@ -20,6 +20,7 @@
                                     <th>Curso</th>
                                     <th>Tipo Concurso</th>
                                     <th>Cartão de Cidadão</th>
+                                    <th>Certificado de Habilitações</th>
             
                                     <th>Ações</th>
                                 </tr>
@@ -36,6 +37,7 @@
                                     <th><%= concorrers.curso %></th>
                                     <th><%= concorrers.concurso %></th>
                                     <td class="img-responsive"><img height="100px" src="/images/<%= concorrers.file %>"></td>
+                                    <td class="img-responsive"><img height="100px" src="/images/<%= concorrers.certificado %>"></td>
                                     
                                     <th>
                                         <form method="POST" action="/concorrers/delete">
@@ -48,6 +50,10 @@
                             </tbody>
                         </table>
                     
+                    </div>
+
+                    <div class="mb-3">
+                        <button><a href="/pdff">Gerar PDF</a></button>
                     </div>
                     
                         

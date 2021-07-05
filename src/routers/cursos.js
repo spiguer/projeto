@@ -36,7 +36,7 @@ router.get('/cursotable', (req, res) => {
 })
 
 
-router.get('/showalunos', async (req, res) => {
+router.get('/showalunos', (req, res) => {
     Concorrer.find({curso: req.query.curso, concurso: req.query.concurso}).then(concorrers => {
     res.render('admin/showalunos', {concorrers})     
     })
@@ -44,14 +44,61 @@ router.get('/showalunos', async (req, res) => {
 })
 
 
+//PDF
+const ejs = require('ejs')
+const path = require('path')
+const puppeteer = require('puppeteer')
+
+
+router.get('/pdff', async(request, response) => {
+
+    
+
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+
+    await page.goto('http://localhost:3000/showalunos', {
+        waitUntil: 'networkidle0'
+    })
+
+    const pdf = await page.pdf({
+        printBackground: true,
+        format: 'A2'
+    })
+
+    await browser.close()
+
+    response.contentType("application/pdf")
+
+    return response.send(pdf)
+
+})
+
+router.get('/showalunos?', (request, response) => {
+
+    const filePath = path.join(__dirname, "./templates/views/admin/showalunos.ejs")
+    ejs.renderFile(filePath, { Concorrer }, (err, html) => {
+        if(err) {
+            return response.send('Erro na leitura do arquivo')
+        }
+    
+        // enviar para o navegador
+        return response.send(html)
+    })
+   
+})
+
+
+
+
 
 
 router.post('/cursos', catchAsync(async(req, res, next) => {
     try{
-        const {name, vagaset, vagasoc, vagastsp, vagasvt} = req.body
-        const curs = new Curso ({name, vagaset, vagasoc, vagastsp, vagasvt})
+        const {name, escola} = req.body
+        const curs = new Curso ({name, escola})
         await curs.save()
-        res.redirect('admin')
+        res.redirect('cursotable')
     }catch(e){
         req.flash('error', e.message)
         res.redirect('admin/curso')

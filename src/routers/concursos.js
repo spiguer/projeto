@@ -19,7 +19,7 @@ router.post('/concursos', async(req, res) => {
         const {name} = req.body
         const concurs = new Concurso({name})
         await concurs.save()
-        res.redirect('/curso')
+        res.redirect('/concursotable')
      }catch(e){
         req.flash('error', e.message)
         res.redirect('admin/concurso')

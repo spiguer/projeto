@@ -4,6 +4,7 @@ const passport = require('passport')
 const catchAsync = require('../utils/catchAsync')
 const Admin = require('../models/admin')
 const { sendWelcomeEmail, sendCancelationEmail} = require('../emails/account')
+const auth = require('../middleware/auth')
 
 router.get('/registar', (req, res)=>{
     res.render('admin/registar')
@@ -53,10 +54,24 @@ router.post('/admins/delete', async(req,res) => {
     res.redirect('/tabela')
 })*/
 
-router.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req,res) => {
+/*outer.post('/login', passport.authenticate('local', {failureFlash:true, failureRedirect: '/login'}), (req,res) => {
     req.flash('success', 'Bem vindo de volta!')
-    res.redirect('../tabAdm')
-})
+    const redirectUrl = req.session.returnTo || '../tabela';
+    delete req.session.returnTo;
+    res.redirect(redirectUrl)
+})*/
+
+router.post('/login', function(req, res, next) {
+    
+    passport.authenticate('local', function(err, admin, info) {
+      if (err) { return next(err); }
+      if (!admin) { return res.redirect('/login'); }
+      req.logIn(admin, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/tabela');
+      });
+    })(req, res, next);
+  });
 
 router.get('/logout', (req, res) => {
     req.logout()

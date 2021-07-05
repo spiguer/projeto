@@ -2,7 +2,7 @@
 
 <div class="container d-flex justify-content-center align-items-center mt-5">
     <div class="row">
-        <div class="col-md-6 offset-md-3 col-xl-8 offset-xl-4">
+        <div class="">
             <div class="card shadow">
                 <div class="card-body">
                     <h3 class="card-title">Tabela de Cursos</h3>
@@ -13,10 +13,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Nome</th>
-                                <th>Vaga 1</th>
-                                <th>Vaga 2</th>
-                                <th>vaga 3</th>
-                                <th>vaga 4</th>
+                                <th>Escola</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -25,10 +22,7 @@
                                 <tr>
                                     <th><%= curso.id %></th>
                                     <th><%= curso.name %></th>
-                                    <th><%= curso.vagaset %></th>
-                                    <th><%= curso.vagasoc %></th>
-                                    <th><%= curso.vagastsp %></th>
-                                    <th><%= curso.vagasvt %></th>
+                                    <th><%= curso.escola %></th>
                                     <th>
                                     <form method="POST" action="/cursos/delete">
                                         <input type="hidden" name="id" value="<%= curso._id %>">
@@ -40,27 +34,7 @@
                         </tbody>
                     </table>
                     </div>
-                    <ul>
-                        <% curso.forEach(curso => {%>
-                            <li><a href="/showalunos?curso=<%= curso.name %>"><option><%= curso.name %></option></a></li>
-                        <% }) %>
-                    </ul>
-                </div>
-                
-                <div class="mb-3">
-                    <select name="curso" id="curso">
-                        <% curso.forEach(function(curso){ %>
-                            <option value="<%= curso.name %>"><%= curso.name %> </option>
-                        <% }) %>
-                    </select>
-                    <select name="concurso">
-                        <% concurso.forEach(function(concurso){ %>
-                            <option value="<%= concurso.name %>"><%= concurso.name %></option>
-                        <% }) %>
-                        
-                    </select>
-                    <button type="submit"><a href="/showalunos?curso=<%= curso.name %>&concurso=<%= concurso.name %>">Procurar</a></button>
-               
+                    
                 </div>
             </div>
         </div>

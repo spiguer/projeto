@@ -19,7 +19,7 @@ const concorrerSchema = new Schema({
         max:969999999
     },
     dateOfBirth: {
-        type: Date,
+        type: String,
         required: true,
         trim: true
     },
@@ -40,7 +40,9 @@ const concorrerSchema = new Schema({
     },
     file: {
         type: String
-
+    },
+    certificado: {
+        type: String
     }
 })
 
