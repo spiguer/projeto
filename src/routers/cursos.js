@@ -37,7 +37,7 @@ router.get('/cursotable', (req, res) => {
 
 
 router.get('/showalunos', (req, res) => {
-    Concorrer.find({curso: req.query.curso, concurso: req.query.concurso}).then(concorrers => {
+    Concorrer.find({curso: req.body.curso, concurso: req.body.concurso}).then(concorrers => {
     res.render('admin/showalunos', {concorrers})     
     })
         

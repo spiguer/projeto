@@ -52,31 +52,24 @@
                 </div>
 
                 </div>
-                <ul>
-                    <% curso.forEach(curso => {%>
-                        <li><a href="/showalunos?curso=<%= curso.name %>"><option><%= curso.name %></option></a></li>
-                    <% }) %>
-                </ul>
+                
             </div>
             
             <div class="mb-3">
                 
-        
-                <button type="submit">
-                    <select name="curso" id="curso">
-                        <% curso.forEach(function(curso){ %>
-                            <option value="<%= curso.name %>"><%= curso.name %> </option>
-                        <% }) %>
-                    </select>
-                    <select name="concurso">
-                        <% concurso.forEach(function(concurso){ %>
-                            <option id="concurso" value="<%= concurso.name %>"><%= concurso.name %></option>
-                        <% }) %>
-                        
-                    </select>
-                    <a href="/showalunos?curso=<%= curso.name %>&concurso=<%= concurso.name %>">Procurar</a></button>
-           
-            </div>
+            <form id="tableForm" action="/showalunos" method="GET">
+              <select name="curso" id="curso">
+                <%curso.forEach(function(curso){ %>
+                  <option value="<%= curso.name %>"><%= curso.name %> </option>
+                  <% }) %>
+                </select>
+                <select name="concurso">
+                  <% concurso.forEach(function(concurso){ %>
+                    <option id="concurso" value="<%= concurso.name %>"><%= concurso.name %></option>
+                    <% }) %>
+                </select>
+              <input type="submit" value="Procurar" />
+            </form>
 
             <a href="/pdf">Gerar PDF</a>
                         
@@ -87,5 +80,5 @@
             </div>
         </div>
     </div>
+    
 </div>
-
